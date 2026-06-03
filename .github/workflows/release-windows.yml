@@ -38,8 +38,18 @@ jobs:
           --add-data "tablet_areas.json;."
           app.py
 
-      - name: Create release and upload EXE
+      - name: Package release zip
+        run: |
+          New-Item -ItemType Directory -Force release
+          Copy-Item dist/TabletAreaCalculator.exe release/
+          Copy-Item tablet_areas.json release/
+          Compress-Archive -Path release/* -DestinationPath TabletAreaCalculator-Windows.zip -Force
+
+      - name: Create release and upload assets
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/TabletAreaCalculator.exe
+          files: |
+            dist/TabletAreaCalculator.exe
+            tablet_areas.json
+            TabletAreaCalculator-Windows.zip
           generate_release_notes: true
