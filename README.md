@@ -43,7 +43,9 @@ py .\osu_tablet_area_calc.py
 - Supports target width and target height.
 - Can lock target width/height to the aspect ratio.
 - Keeps the same center point when requested.
-- Includes a `-20%` to `+20%` size adjustment slider in `0.5%` steps.
+- Includes a `-20%` to `+20%` size adjustment slider in `0.1%` steps.
+  The slider resizes proportionally from the current area, so `0%` exactly matches the current width and height and preserves the current aspect ratio without using the rounded aspect-ratio field.
+  The slider percentage is a width/height scale. The output **Area change** is the resulting tablet area change, so `+20%` width/height becomes `+44%` area.
 - Shows a compact tablet area visualizer for the current and calculated areas.
 - Recalculates live as fields change.
 - Rounds displayed output to 5 decimal places.
@@ -124,9 +126,106 @@ The **Area Preview** panel draws:
 
 The preview uses OpenTabletDriver's area model: `X` and `Y` are the center of the active area in millimeters. The drawn area is calculated as `left = X - width / 2`, `top = Y - height / 2`, `right = X + width / 2`, and `bottom = Y + height / 2`. When **Keep same center point** is enabled, the current and new center markers should overlap and the output `X/Y` stay unchanged.
 
-If full tablet boundary dimensions are available from the loaded profile, or the selected profile matches a known Wacom model, the preview uses that real tablet size and labels it in the canvas. Known models include CTL-470, CTL-472, and CTL-672.
+When a resized area would exceed a detected or known tablet boundary, the app clamps the output center like OpenTabletDriver so the active area fits inside the tablet. For unknown tablets using a virtual boundary, clamping is not applied.
 
-If full dimensions cannot be detected or matched, the preview labels the boundary as **virtual boundary** and uses a fallback tablet space starting at `0,0` that is large enough to contain both the current and new areas. Manual values still work without loading an OTD config, but the preview is OTD-accurate only when a real tablet boundary is detected or known.
+For supported tablet models, the preview uses a fixed max active area as the tablet boundary. Known models are loaded from `tablet_areas.json` in the same folder as the app. If full tablet boundary dimensions are detected directly from the loaded profile, those detected dimensions are used instead. If the tablet model is unknown and full dimensions cannot be detected, the preview labels the boundary as **virtual boundary**. The virtual boundary is a stable comparison viewport, not the tablet's physical maximum.
+
+Known tablets use OTD-style center clamping: the output center is clamped so the active area fits inside the tablet's max boundary. Unknown tablets using a virtual boundary are not clamped.
+
+## Tablet Max Areas (tablet_areas.json)
+
+`tablet_areas.json` in the project root stores the maximum active area for known tablet models. The app loads it at startup and matches the selected OTD profile name against it (case-insensitive substring match).
+
+Default contents:
+
+```json
+{
+  "Wacom CTL-470": { "width_mm": 147.2, "height_mm": 92.0 },
+  "Wacom CTL-472": { "width_mm": 152.0, "height_mm": 95.0 },
+  "Wacom CTL-672": { "width_mm": 216.0, "height_mm": 135.0 }
+}
+```
+
+To add a tablet model, append a new entry using the display name and its max active area in millimeters:
+
+```json
+"Wacom CTL-6100WL": { "width_mm": 224.0, "height_mm": 148.0 }
+```
+
+The display name is also used as the match key (case-insensitive). Any OTD profile name that contains the display name as a substring will match. For example, `"Wacom CTL-470"` matches an OTD profile named `"Wacom CTL-470"` or `"wacom ctl-470"`.
+
+**Known tablet** (matched from `tablet_areas.json`):
+- Uses the configured `width_mm` / `height_mm` as the fixed tablet boundary in the visualizer.
+- Applies OTD-style center clamping so the active area stays inside the boundary.
+- Labels the boundary with the display name and dimensions.
+
+**Unknown tablet** (no match):
+- Uses a virtual boundary sized around the current area.
+- Does not apply center clamping.
+- Labels the boundary as **virtual boundary**.
+
+If `tablet_areas.json` is missing or contains invalid JSON, the app still launches. A warning is printed to stderr and an empty tablet map is used, treating all tablets as unknown.
+
+## Generating tablet_areas.json from OTD Configurations
+
+`scripts/generate_tablet_areas_from_otd.py` builds or updates `tablet_areas.json` from a local copy of the OpenTabletDriver Configurations folder. Normal app use does not require GitHub or any internet connection — this script is an optional offline tool only.
+
+### Get the OTD Configurations folder
+
+Download or shallow-clone the OpenTabletDriver repository (branch `0.6.x`):
+
+```powershell
+git clone --branch 0.6.x --depth 1 https://github.com/OpenTabletDriver/OpenTabletDriver.git
+```
+
+The Configurations folder is at:
+
+```
+OpenTabletDriver\OpenTabletDriver.Configurations\Configurations
+```
+
+### Run the generator
+
+```powershell
+py scripts\generate_tablet_areas_from_otd.py "C:\path\to\OpenTabletDriver.Configurations\Configurations"
+```
+
+The script recursively scans `*.json` files in the given folder and extracts:
+
+- `Name` — tablet display name, used as the `tablet_areas.json` key and the match key in the app
+- `Specifications.Digitizer.Width` — max active width in **millimeters** (no conversion)
+- `Specifications.Digitizer.Height` — max active height in **millimeters** (no conversion)
+
+Entries are written to `tablet_areas.json` in the project root with a `"source": "opentabletdriver-config"` field so future runs can distinguish generated entries from manually edited ones.
+
+### Merge behavior
+
+| Existing entry | OTD dimensions | Result |
+|---|---|---|
+| Previously generated (`source` tag) | any | Replaced with latest OTD data |
+| Manual (no `source`) | Same as OTD | Source tag added; dimensions unchanged |
+| Manual (no `source`) | Different from OTD | Preserved unchanged |
+| Not present | — | Added as new entry |
+
+Use `--overwrite-manual` to replace manual entries even when their dimensions differ from OTD data.
+
+The script prints a summary:
+
+```
+OTD folder: C:\...\Configurations
+Output:     C:\...\tablet_areas.json
+Scanned:    87 JSON file(s)
+Valid:      87 entries extracted from OTD configs
+Added:      84 new
+Updated:    3 refreshed or source-tagged
+Preserved:  0 manual entries kept (dimensions differ from OTD)
+Skipped:    0 file(s) — no usable digitizer dimensions
+Total:      87 entries written to tablet_areas.json
+```
+
+### After running
+
+Restart the app. Tablet profiles whose OTD profile name contains a `tablet_areas.json` key (case-insensitive substring match) will use the fixed OTD boundary in the visualizer and apply OTD-style center clamping. Unknown tablets continue to use a virtual boundary.
 
 ## Included Example
 

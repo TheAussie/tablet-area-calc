@@ -1,0 +1,1702 @@
+{
+  "Wacom CTL-470": {
+    "width_mm": 147.2,
+    "height_mm": 92.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTL-472": {
+    "width_mm": 152.0,
+    "height_mm": 95.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTL-672": {
+    "width_mm": 216.0,
+    "height_mm": 135.0,
+    "source": "opentabletdriver-config"
+  },
+  "Acepen AP1060": {
+    "width_mm": 254.0,
+    "height_mm": 152.4,
+    "source": "opentabletdriver-config"
+  },
+  "Acepen AP906": {
+    "width_mm": 229.87,
+    "height_mm": 142.24,
+    "source": "opentabletdriver-config"
+  },
+  "Adesso Cybertablet K8": {
+    "width_mm": 203.2,
+    "height_mm": 114.3,
+    "source": "opentabletdriver-config"
+  },
+  "Artisul A1201": {
+    "width_mm": 258.45,
+    "height_mm": 171.55,
+    "source": "opentabletdriver-config"
+  },
+  "Artisul AP604": {
+    "width_mm": 159.0,
+    "height_mm": 99.3,
+    "source": "opentabletdriver-config"
+  },
+  "Artisul D16 Pro": {
+    "width_mm": 344.17,
+    "height_mm": 193.57,
+    "source": "opentabletdriver-config"
+  },
+  "Artisul D22S": {
+    "width_mm": 476.76,
+    "height_mm": 268.225,
+    "source": "opentabletdriver-config"
+  },
+  "Artisul M0610 Pro": {
+    "width_mm": 257.375,
+    "height_mm": 161.49,
+    "source": "opentabletdriver-config"
+  },
+  "Bosto BT-12HD": {
+    "width_mm": 113.792,
+    "height_mm": 65.024,
+    "source": "opentabletdriver-config"
+  },
+  "FlooGoo FMA100": {
+    "width_mm": 262.128,
+    "height_mm": 196.596,
+    "source": "opentabletdriver-config"
+  },
+  "Gaomon 1060 Pro": {
+    "width_mm": 254.0,
+    "height_mm": 158.75,
+    "source": "opentabletdriver-config"
+  },
+  "Gaomon GM116HD": {
+    "width_mm": 256.3,
+    "height_mm": 144.2,
+    "source": "opentabletdriver-config"
+  },
+  "Gaomon GM156HD": {
+    "width_mm": 344.2,
+    "height_mm": 193.6,
+    "source": "opentabletdriver-config"
+  },
+  "Gaomon M106K": {
+    "width_mm": 200.0,
+    "height_mm": 125.0,
+    "source": "opentabletdriver-config"
+  },
+  "Gaomon M106K Pro": {
+    "width_mm": 254.0,
+    "height_mm": 158.75,
+    "source": "opentabletdriver-config"
+  },
+  "Gaomon M10K": {
+    "width_mm": 254.0,
+    "height_mm": 158.75,
+    "source": "opentabletdriver-config"
+  },
+  "Gaomon M10K Pro": {
+    "width_mm": 254.0,
+    "height_mm": 158.75,
+    "source": "opentabletdriver-config"
+  },
+  "Gaomon M1220": {
+    "width_mm": 258.5,
+    "height_mm": 161.55,
+    "source": "opentabletdriver-config"
+  },
+  "Gaomon M1230": {
+    "width_mm": 258.5,
+    "height_mm": 171.525,
+    "source": "opentabletdriver-config"
+  },
+  "Gaomon M5": {
+    "width_mm": 179.15,
+    "height_mm": 118.5,
+    "source": "opentabletdriver-config"
+  },
+  "Gaomon M6": {
+    "width_mm": 254.0,
+    "height_mm": 158.75,
+    "source": "opentabletdriver-config"
+  },
+  "Gaomon M7": {
+    "width_mm": 258.445,
+    "height_mm": 171.54,
+    "source": "opentabletdriver-config"
+  },
+  "Gaomon M8": {
+    "width_mm": 258.465,
+    "height_mm": 161.535,
+    "source": "opentabletdriver-config"
+  },
+  "Gaomon M8 (Variant 2)": {
+    "width_mm": 258.465,
+    "height_mm": 161.535,
+    "source": "opentabletdriver-config"
+  },
+  "Gaomon PD1161": {
+    "width_mm": 256.32,
+    "height_mm": 144.18,
+    "source": "opentabletdriver-config"
+  },
+  "Gaomon PD1320": {
+    "width_mm": 293.76,
+    "height_mm": 165.24,
+    "source": "opentabletdriver-config"
+  },
+  "Gaomon PD156 Pro": {
+    "width_mm": 344.2,
+    "height_mm": 193.6,
+    "source": "opentabletdriver-config"
+  },
+  "Gaomon PD1560": {
+    "width_mm": 344.16,
+    "height_mm": 193.59,
+    "source": "opentabletdriver-config"
+  },
+  "Gaomon PD1561": {
+    "width_mm": 344.2,
+    "height_mm": 193.6,
+    "source": "opentabletdriver-config"
+  },
+  "Gaomon PD2200": {
+    "width_mm": 476.725,
+    "height_mm": 268.225,
+    "source": "opentabletdriver-config"
+  },
+  "Gaomon S56K": {
+    "width_mm": 160.0,
+    "height_mm": 120.0,
+    "source": "opentabletdriver-config"
+  },
+  "Gaomon S620": {
+    "width_mm": 165.1,
+    "height_mm": 101.6,
+    "source": "opentabletdriver-config"
+  },
+  "Gaomon S630": {
+    "width_mm": 129.3,
+    "height_mm": 80.8,
+    "source": "opentabletdriver-config"
+  },
+  "Gaomon S830": {
+    "width_mm": 172.3,
+    "height_mm": 107.7,
+    "source": "opentabletdriver-config"
+  },
+  "Genius G-Pen 560": {
+    "width_mm": 152.3873,
+    "height_mm": 114.2873,
+    "source": "opentabletdriver-config"
+  },
+  "Genius G-Pen F509": {
+    "width_mm": 227.584,
+    "height_mm": 136.5504,
+    "source": "opentabletdriver-config"
+  },
+  "Genius i405x": {
+    "width_mm": 140.5,
+    "height_mm": 102.4,
+    "source": "opentabletdriver-config"
+  },
+  "Genius i608x": {
+    "width_mm": 204.8,
+    "height_mm": 153.6,
+    "source": "opentabletdriver-config"
+  },
+  "Huion 1060 Plus": {
+    "width_mm": 254.0,
+    "height_mm": 158.75,
+    "source": "opentabletdriver-config"
+  },
+  "Huion 420": {
+    "width_mm": 105.918,
+    "height_mm": 59.436,
+    "source": "opentabletdriver-config"
+  },
+  "Huion G10T": {
+    "width_mm": 254.0,
+    "height_mm": 158.75,
+    "source": "opentabletdriver-config"
+  },
+  "Huion G930L": {
+    "width_mm": 345.44,
+    "height_mm": 215.9,
+    "source": "opentabletdriver-config"
+  },
+  "Huion GC610": {
+    "width_mm": 254.0,
+    "height_mm": 158.75,
+    "source": "opentabletdriver-config"
+  },
+  "Huion GT-156HD V2": {
+    "width_mm": 343.9,
+    "height_mm": 193.55,
+    "source": "opentabletdriver-config"
+  },
+  "Huion GT-191 V2": {
+    "width_mm": 434.88,
+    "height_mm": 238.68,
+    "source": "opentabletdriver-config"
+  },
+  "Huion GT-220 V2": {
+    "width_mm": 476.68,
+    "height_mm": 268.145,
+    "source": "opentabletdriver-config"
+  },
+  "Huion GT-220 V2 (2048)": {
+    "width_mm": 476.758,
+    "height_mm": 268.224,
+    "source": "opentabletdriver-config"
+  },
+  "Huion GT-221": {
+    "width_mm": 476.73,
+    "height_mm": 268.205,
+    "source": "opentabletdriver-config"
+  },
+  "Huion GT-221 Pro": {
+    "width_mm": 476.73,
+    "height_mm": 268.205,
+    "source": "opentabletdriver-config"
+  },
+  "Huion H1060P": {
+    "width_mm": 254.0,
+    "height_mm": 158.75,
+    "source": "opentabletdriver-config"
+  },
+  "Huion H1061P": {
+    "width_mm": 266.7,
+    "height_mm": 166.7,
+    "source": "opentabletdriver-config"
+  },
+  "Huion H1161": {
+    "width_mm": 279.4,
+    "height_mm": 174.625,
+    "source": "opentabletdriver-config"
+  },
+  "Huion H320M": {
+    "width_mm": 228.5,
+    "height_mm": 142.9,
+    "source": "opentabletdriver-config"
+  },
+  "Huion H420": {
+    "width_mm": 105.918,
+    "height_mm": 59.436,
+    "source": "opentabletdriver-config"
+  },
+  "Huion H420X": {
+    "width_mm": 106.0,
+    "height_mm": 66.0,
+    "source": "opentabletdriver-config"
+  },
+  "Huion H430P": {
+    "width_mm": 121.92,
+    "height_mm": 76.2,
+    "source": "opentabletdriver-config"
+  },
+  "Huion H580X": {
+    "width_mm": 203.2,
+    "height_mm": 127.0,
+    "source": "opentabletdriver-config"
+  },
+  "Huion H610 Pro": {
+    "width_mm": 254.0,
+    "height_mm": 158.75,
+    "source": "opentabletdriver-config"
+  },
+  "Huion H610 Pro V2": {
+    "width_mm": 254.0,
+    "height_mm": 158.75,
+    "source": "opentabletdriver-config"
+  },
+  "Huion H610 Pro V3": {
+    "width_mm": 254.0,
+    "height_mm": 158.75,
+    "source": "opentabletdriver-config"
+  },
+  "Huion H610X": {
+    "width_mm": 254.0,
+    "height_mm": 158.8,
+    "source": "opentabletdriver-config"
+  },
+  "Huion H640P": {
+    "width_mm": 160.0,
+    "height_mm": 100.0,
+    "source": "opentabletdriver-config"
+  },
+  "Huion H641P": {
+    "width_mm": 160.0,
+    "height_mm": 100.0,
+    "source": "opentabletdriver-config"
+  },
+  "Huion H642": {
+    "width_mm": 160.02,
+    "height_mm": 99.06,
+    "source": "opentabletdriver-config"
+  },
+  "Huion H690": {
+    "width_mm": 228.6,
+    "height_mm": 142.875,
+    "source": "opentabletdriver-config"
+  },
+  "Huion H950P": {
+    "width_mm": 221.0,
+    "height_mm": 138.0,
+    "source": "opentabletdriver-config"
+  },
+  "Huion H951P": {
+    "width_mm": 221.0,
+    "height_mm": 138.0,
+    "source": "opentabletdriver-config"
+  },
+  "Huion HC16": {
+    "width_mm": 254.0,
+    "height_mm": 158.75,
+    "source": "opentabletdriver-config"
+  },
+  "Huion HC16 (Variant 2)": {
+    "width_mm": 254.0,
+    "height_mm": 158.75,
+    "source": "opentabletdriver-config"
+  },
+  "Huion HS610": {
+    "width_mm": 254.0,
+    "height_mm": 158.75,
+    "source": "opentabletdriver-config"
+  },
+  "Huion HS611": {
+    "width_mm": 258.4,
+    "height_mm": 161.5,
+    "source": "opentabletdriver-config"
+  },
+  "Huion HS64": {
+    "width_mm": 160.0,
+    "height_mm": 102.0,
+    "source": "opentabletdriver-config"
+  },
+  "Huion HS95": {
+    "width_mm": 203.19,
+    "height_mm": 126.99,
+    "source": "opentabletdriver-config"
+  },
+  "Huion Kamvas 12": {
+    "width_mm": 267.9,
+    "height_mm": 168.2,
+    "source": "opentabletdriver-config"
+  },
+  "Huion Kamvas 13": {
+    "width_mm": 293.76,
+    "height_mm": 165.24,
+    "source": "opentabletdriver-config"
+  },
+  "Huion Kamvas 13 (Gen 3)": {
+    "width_mm": 293.8,
+    "height_mm": 165.2,
+    "source": "opentabletdriver-config"
+  },
+  "Huion Kamvas 16": {
+    "width_mm": 344.2,
+    "height_mm": 193.6,
+    "source": "opentabletdriver-config"
+  },
+  "Huion Kamvas 16 (2021)": {
+    "width_mm": 344.2,
+    "height_mm": 193.6,
+    "source": "opentabletdriver-config"
+  },
+  "Huion Kamvas 16 (Gen 3)": {
+    "width_mm": 349.6,
+    "height_mm": 196.7,
+    "source": "opentabletdriver-config"
+  },
+  "Huion Kamvas 20": {
+    "width_mm": 434.75,
+    "height_mm": 238.75,
+    "source": "opentabletdriver-config"
+  },
+  "Huion Kamvas 22": {
+    "width_mm": 476.76,
+    "height_mm": 268.225,
+    "source": "opentabletdriver-config"
+  },
+  "Huion Kamvas 22 Plus": {
+    "width_mm": 476.64,
+    "height_mm": 268.11,
+    "source": "opentabletdriver-config"
+  },
+  "Huion Kamvas 24": {
+    "width_mm": 526.85,
+    "height_mm": 296.35,
+    "source": "opentabletdriver-config"
+  },
+  "Huion Kamvas 24 Plus": {
+    "width_mm": 526.85,
+    "height_mm": 296.35,
+    "source": "opentabletdriver-config"
+  },
+  "Huion Kamvas Pro 12": {
+    "width_mm": 267.9,
+    "height_mm": 168.2,
+    "source": "opentabletdriver-config"
+  },
+  "Huion Kamvas Pro 13": {
+    "width_mm": 293.76,
+    "height_mm": 165.24,
+    "source": "opentabletdriver-config"
+  },
+  "Huion Kamvas Pro 13 (2.5k)": {
+    "width_mm": 286.465,
+    "height_mm": 179.04,
+    "source": "opentabletdriver-config"
+  },
+  "Huion Kamvas Pro 16": {
+    "width_mm": 344.2,
+    "height_mm": 193.6,
+    "source": "opentabletdriver-config"
+  },
+  "Huion Kamvas Pro 16 (2.5k)": {
+    "width_mm": 349.63,
+    "height_mm": 196.665,
+    "source": "opentabletdriver-config"
+  },
+  "Huion Kamvas Pro 16 (4k)": {
+    "width_mm": 344.2,
+    "height_mm": 193.6,
+    "source": "opentabletdriver-config"
+  },
+  "Huion Kamvas Pro 16 Plus (4k)": {
+    "width_mm": 344.2,
+    "height_mm": 193.6,
+    "source": "opentabletdriver-config"
+  },
+  "Huion Kamvas Pro 16 V2": {
+    "width_mm": 344.2,
+    "height_mm": 193.6,
+    "source": "opentabletdriver-config"
+  },
+  "Huion Kamvas Pro 19 (4K)": {
+    "width_mm": 408.96,
+    "height_mm": 230.03,
+    "source": "opentabletdriver-config"
+  },
+  "Huion Kamvas Pro 20": {
+    "width_mm": 435.375,
+    "height_mm": 238.75,
+    "source": "opentabletdriver-config"
+  },
+  "Huion Kamvas Pro 22 (2019)": {
+    "width_mm": 476.75,
+    "height_mm": 268.22,
+    "source": "opentabletdriver-config"
+  },
+  "Huion Kamvas Pro 24": {
+    "width_mm": 526.895,
+    "height_mm": 296.18,
+    "source": "opentabletdriver-config"
+  },
+  "Huion Kamvas Pro 24 (4K)": {
+    "width_mm": 526.85,
+    "height_mm": 296.35,
+    "source": "opentabletdriver-config"
+  },
+  "Huion Kamvas Pro 24 (Gen 3)": {
+    "width_mm": 527.04,
+    "height_mm": 296.45,
+    "source": "opentabletdriver-config"
+  },
+  "Huion Kamvas Pro 27": {
+    "width_mm": 596.735,
+    "height_mm": 335.66,
+    "source": "opentabletdriver-config"
+  },
+  "Huion L310": {
+    "width_mm": 160.0,
+    "height_mm": 100.0,
+    "source": "opentabletdriver-config"
+  },
+  "Huion L610": {
+    "width_mm": 254.0,
+    "height_mm": 158.75,
+    "source": "opentabletdriver-config"
+  },
+  "Huion New 1060 Plus": {
+    "width_mm": 254.0,
+    "height_mm": 158.75,
+    "source": "opentabletdriver-config"
+  },
+  "Huion New 1060 Plus (2048)": {
+    "width_mm": 254.0,
+    "height_mm": 158.75,
+    "source": "opentabletdriver-config"
+  },
+  "Huion Note X10": {
+    "width_mm": 187.0,
+    "height_mm": 141.0,
+    "source": "opentabletdriver-config"
+  },
+  "Huion Q11K": {
+    "width_mm": 279.4,
+    "height_mm": 174.625,
+    "source": "opentabletdriver-config"
+  },
+  "Huion Q11K V2": {
+    "width_mm": 279.4,
+    "height_mm": 174.625,
+    "source": "opentabletdriver-config"
+  },
+  "Huion Q620M": {
+    "width_mm": 266.7,
+    "height_mm": 165.1,
+    "source": "opentabletdriver-config"
+  },
+  "Huion Q630M": {
+    "width_mm": 266.7,
+    "height_mm": 166.7,
+    "source": "opentabletdriver-config"
+  },
+  "Huion RDS-160": {
+    "width_mm": 344.2,
+    "height_mm": 193.6,
+    "source": "opentabletdriver-config"
+  },
+  "Huion RDS-220": {
+    "width_mm": 476.76,
+    "height_mm": 268.225,
+    "source": "opentabletdriver-config"
+  },
+  "Huion RTE-100": {
+    "width_mm": 121.92,
+    "height_mm": 76.19,
+    "source": "opentabletdriver-config"
+  },
+  "Huion RTM-500": {
+    "width_mm": 220.995,
+    "height_mm": 137.995,
+    "source": "opentabletdriver-config"
+  },
+  "Huion RTP-700": {
+    "width_mm": 279.4,
+    "height_mm": 174.6,
+    "source": "opentabletdriver-config"
+  },
+  "Huion WH1409": {
+    "width_mm": 350.0,
+    "height_mm": 218.0,
+    "source": "opentabletdriver-config"
+  },
+  "Huion WH1409 V2": {
+    "width_mm": 350.0,
+    "height_mm": 218.0,
+    "source": "opentabletdriver-config"
+  },
+  "Huion WH1409 V2 (Variant 2)": {
+    "width_mm": 350.52,
+    "height_mm": 219.0623,
+    "source": "opentabletdriver-config"
+  },
+  "KENTING K5540": {
+    "width_mm": 139.6873,
+    "height_mm": 101.5873,
+    "source": "opentabletdriver-config"
+  },
+  "LetSketch WP9620C": {
+    "width_mm": 269.445,
+    "height_mm": 167.955,
+    "source": "opentabletdriver-config"
+  },
+  "LifeTec LT9570": {
+    "width_mm": 299.95,
+    "height_mm": 224.95,
+    "source": "opentabletdriver-config"
+  },
+  "Monoprice 10594": {
+    "width_mm": 254.0,
+    "height_mm": 158.75,
+    "source": "opentabletdriver-config"
+  },
+  "Monoprice MP1060-HA60": {
+    "width_mm": 253.99365,
+    "height_mm": 158.74365,
+    "source": "opentabletdriver-config"
+  },
+  "Parblo A609": {
+    "width_mm": 223.52,
+    "height_mm": 139.7,
+    "source": "opentabletdriver-config"
+  },
+  "Parblo A610": {
+    "width_mm": 254.0,
+    "height_mm": 152.4,
+    "source": "opentabletdriver-config"
+  },
+  "Parblo A610 Pro": {
+    "width_mm": 255.5,
+    "height_mm": 160.0,
+    "source": "opentabletdriver-config"
+  },
+  "Parblo A610 Pro (Variant 2)": {
+    "width_mm": 252.0,
+    "height_mm": 157.5,
+    "source": "opentabletdriver-config"
+  },
+  "Parblo A640": {
+    "width_mm": 148.08,
+    "height_mm": 85.85,
+    "source": "opentabletdriver-config"
+  },
+  "Parblo A640 V2": {
+    "width_mm": 156.015,
+    "height_mm": 93.65,
+    "source": "opentabletdriver-config"
+  },
+  "Parblo Intangbo M": {
+    "width_mm": 260.5,
+    "height_mm": 160.0,
+    "source": "opentabletdriver-config"
+  },
+  "Parblo Intangbo S": {
+    "width_mm": 173.06,
+    "height_mm": 100.45,
+    "source": "opentabletdriver-config"
+  },
+  "Parblo Intangbo SW": {
+    "width_mm": 182.88,
+    "height_mm": 102.869,
+    "source": "opentabletdriver-config"
+  },
+  "Parblo Ninos M": {
+    "width_mm": 217.1954,
+    "height_mm": 125.22,
+    "source": "opentabletdriver-config"
+  },
+  "Parblo Ninos N4": {
+    "width_mm": 108.0,
+    "height_mm": 81.0,
+    "source": "opentabletdriver-config"
+  },
+  "Parblo Ninos N7": {
+    "width_mm": 177.8,
+    "height_mm": 111.09,
+    "source": "opentabletdriver-config"
+  },
+  "Parblo Ninos N7B": {
+    "width_mm": 177.8,
+    "height_mm": 114.0,
+    "source": "opentabletdriver-config"
+  },
+  "Parblo Ninos S": {
+    "width_mm": 157.11805,
+    "height_mm": 104.013,
+    "source": "opentabletdriver-config"
+  },
+  "RobotPen T9A": {
+    "width_mm": 287.7312,
+    "height_mm": 211.2772,
+    "source": "opentabletdriver-config"
+  },
+  "Trust Flex Design Tablet": {
+    "width_mm": 153.6,
+    "height_mm": 115.2,
+    "source": "opentabletdriver-config"
+  },
+  "Turcom TS-6580": {
+    "width_mm": 203.2,
+    "height_mm": 127.0,
+    "source": "opentabletdriver-config"
+  },
+  "UC-Logic 1060N": {
+    "width_mm": 254.0,
+    "height_mm": 152.4,
+    "source": "opentabletdriver-config"
+  },
+  "UC-Logic PF1209": {
+    "width_mm": 304.79365,
+    "height_mm": 228.59365,
+    "source": "opentabletdriver-config"
+  },
+  "UC-Logic TWMNA62": {
+    "width_mm": 254.0,
+    "height_mm": 158.75,
+    "source": "opentabletdriver-config"
+  },
+  "UGEE M708": {
+    "width_mm": 200.0,
+    "height_mm": 120.0,
+    "source": "opentabletdriver-config"
+  },
+  "UGEE M708 V2": {
+    "width_mm": 254.0,
+    "height_mm": 152.4,
+    "source": "opentabletdriver-config"
+  },
+  "UGEE M708 V3": {
+    "width_mm": 254.0,
+    "height_mm": 152.4,
+    "source": "opentabletdriver-config"
+  },
+  "UGEE M808": {
+    "width_mm": 254.0,
+    "height_mm": 158.75,
+    "source": "opentabletdriver-config"
+  },
+  "UGEE M908": {
+    "width_mm": 254.0,
+    "height_mm": 158.75,
+    "source": "opentabletdriver-config"
+  },
+  "UGEE S1060": {
+    "width_mm": 254.0,
+    "height_mm": 160.0,
+    "source": "opentabletdriver-config"
+  },
+  "UGEE S640": {
+    "width_mm": 159.99,
+    "height_mm": 99.97,
+    "source": "opentabletdriver-config"
+  },
+  "UGEE U1200": {
+    "width_mm": 263.22,
+    "height_mm": 148.055,
+    "source": "opentabletdriver-config"
+  },
+  "UGEE U1600": {
+    "width_mm": 344.14,
+    "height_mm": 193.57,
+    "source": "opentabletdriver-config"
+  },
+  "UGEE UE16": {
+    "width_mm": 340.995,
+    "height_mm": 191.995,
+    "source": "opentabletdriver-config"
+  },
+  "VEIKK A15": {
+    "width_mm": 254.0,
+    "height_mm": 152.4,
+    "source": "opentabletdriver-config"
+  },
+  "VEIKK A15 Pro": {
+    "width_mm": 254.0,
+    "height_mm": 152.4,
+    "source": "opentabletdriver-config"
+  },
+  "VEIKK A15 V2": {
+    "width_mm": 254.0,
+    "height_mm": 158.75,
+    "source": "opentabletdriver-config"
+  },
+  "VEIKK A30": {
+    "width_mm": 254.0,
+    "height_mm": 152.4,
+    "source": "opentabletdriver-config"
+  },
+  "VEIKK A30 V2": {
+    "width_mm": 254.0,
+    "height_mm": 158.75,
+    "source": "opentabletdriver-config"
+  },
+  "VEIKK A50": {
+    "width_mm": 254.0,
+    "height_mm": 152.4,
+    "source": "opentabletdriver-config"
+  },
+  "VEIKK A50 (Variant 2)": {
+    "width_mm": 254.0,
+    "height_mm": 152.4,
+    "source": "opentabletdriver-config"
+  },
+  "VEIKK S640": {
+    "width_mm": 152.4,
+    "height_mm": 101.6,
+    "source": "opentabletdriver-config"
+  },
+  "VEIKK S640 V2": {
+    "width_mm": 152.4,
+    "height_mm": 101.6,
+    "source": "opentabletdriver-config"
+  },
+  "VEIKK VK1060": {
+    "width_mm": 254.0,
+    "height_mm": 158.75,
+    "source": "opentabletdriver-config"
+  },
+  "VEIKK VK1060PRO": {
+    "width_mm": 254.0,
+    "height_mm": 158.75,
+    "source": "opentabletdriver-config"
+  },
+  "VEIKK VK1200": {
+    "width_mm": 294.4,
+    "height_mm": 165.6,
+    "source": "opentabletdriver-config"
+  },
+  "VEIKK VK2200PRO": {
+    "width_mm": 476.0,
+    "height_mm": 268.0,
+    "source": "opentabletdriver-config"
+  },
+  "VEIKK VK430": {
+    "width_mm": 101.6,
+    "height_mm": 76.2,
+    "source": "opentabletdriver-config"
+  },
+  "VEIKK VK430 V2": {
+    "width_mm": 101.6,
+    "height_mm": 76.2,
+    "source": "opentabletdriver-config"
+  },
+  "VEIKK VK640": {
+    "width_mm": 152.4,
+    "height_mm": 101.6,
+    "source": "opentabletdriver-config"
+  },
+  "VEIKK Voila (VO1060)": {
+    "width_mm": 254.0,
+    "height_mm": 158.75,
+    "source": "opentabletdriver-config"
+  },
+  "ViewSonic Woodpad PF0730": {
+    "width_mm": 168.0,
+    "height_mm": 106.4,
+    "source": "opentabletdriver-config"
+  },
+  "ViewSonic Woodpad PF1030": {
+    "width_mm": 224.0,
+    "height_mm": 140.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTC-4110WL": {
+    "width_mm": 152.0,
+    "height_mm": 95.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTC-6110WL": {
+    "width_mm": 216.0,
+    "height_mm": 135.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTE-430": {
+    "width_mm": 127.6,
+    "height_mm": 92.8,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTE-440": {
+    "width_mm": 127.6,
+    "height_mm": 92.8,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTE-450": {
+    "width_mm": 147.6,
+    "height_mm": 92.25,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTE-460": {
+    "width_mm": 152.0,
+    "height_mm": 95.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTE-630": {
+    "width_mm": 208.8,
+    "height_mm": 150.8,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTE-640": {
+    "width_mm": 208.8,
+    "height_mm": 150.8,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTE-650": {
+    "width_mm": 216.48,
+    "height_mm": 135.3,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTE-660": {
+    "width_mm": 216.48,
+    "height_mm": 135.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTF-430": {
+    "width_mm": 127.6,
+    "height_mm": 92.8,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTH-300": {
+    "width_mm": 106.9,
+    "height_mm": 66.8,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTH-301": {
+    "width_mm": 106.9,
+    "height_mm": 66.8,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTH-460": {
+    "width_mm": 147.2,
+    "height_mm": 92.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTH-461": {
+    "width_mm": 147.2,
+    "height_mm": 92.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTH-470": {
+    "width_mm": 147.2,
+    "height_mm": 92.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTH-480": {
+    "width_mm": 152.0,
+    "height_mm": 95.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTH-490": {
+    "width_mm": 152.0,
+    "height_mm": 95.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTH-661": {
+    "width_mm": 216.48,
+    "height_mm": 137.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTH-670": {
+    "width_mm": 216.48,
+    "height_mm": 137.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTH-680": {
+    "width_mm": 216.0,
+    "height_mm": 135.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTH-690": {
+    "width_mm": 216.0,
+    "height_mm": 135.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTL-4100": {
+    "width_mm": 152.0,
+    "height_mm": 95.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTL-4100WL": {
+    "width_mm": 152.0,
+    "height_mm": 95.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTL-460": {
+    "width_mm": 147.2,
+    "height_mm": 92.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTL-471": {
+    "width_mm": 152.0,
+    "height_mm": 95.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTL-480": {
+    "width_mm": 152.0,
+    "height_mm": 95.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTL-490": {
+    "width_mm": 152.0,
+    "height_mm": 95.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTL-6100": {
+    "width_mm": 216.0,
+    "height_mm": 135.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTL-6100WL": {
+    "width_mm": 216.0,
+    "height_mm": 135.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTL-671": {
+    "width_mm": 216.0,
+    "height_mm": 135.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTL-680": {
+    "width_mm": 216.0,
+    "height_mm": 135.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom CTL-690": {
+    "width_mm": 216.0,
+    "height_mm": 135.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom Cintiq 12WX (DTZ-1200W)": {
+    "width_mm": 261.1,
+    "height_mm": 163.2,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom Cintiq 13HD (DTK-1300)": {
+    "width_mm": 299.0,
+    "height_mm": 171.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom Cintiq 16 (DTK-1660)": {
+    "width_mm": 348.16,
+    "height_mm": 197.59,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom Cintiq 18SX (PL-800-U)": {
+    "width_mm": 361.0,
+    "height_mm": 289.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom Cintiq 21UX (DTK-2100)": {
+    "width_mm": 436.0,
+    "height_mm": 328.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom Cintiq 21UX (DTZ-2100)": {
+    "width_mm": 436.0,
+    "height_mm": 328.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom Cintiq 22HD (DTK-2200)": {
+    "width_mm": 475.2,
+    "height_mm": 271.3,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom Cintiq 22HD Touch (DTH-2200)": {
+    "width_mm": 478.0,
+    "height_mm": 271.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom Cintiq Pro 22 (DTH-227)": {
+    "width_mm": 480.06,
+    "height_mm": 271.78,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom Cintiq Pro 27 (DTH-271)": {
+    "width_mm": 600.16,
+    "height_mm": 339.34,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom DTC-121": {
+    "width_mm": 256.32,
+    "height_mm": 144.18,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom DTC-133": {
+    "width_mm": 294.34,
+    "height_mm": 165.56,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom DTH-1320": {
+    "width_mm": 297.76,
+    "height_mm": 169.24,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom ET-0405-U": {
+    "width_mm": 127.6,
+    "height_mm": 92.8,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom ET-0405A-U": {
+    "width_mm": 127.6,
+    "height_mm": 92.8,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom FT-0405-U": {
+    "width_mm": 127.6,
+    "height_mm": 92.8,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom GD-0405-U": {
+    "width_mm": 127.0,
+    "height_mm": 106.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom GD-0608-U": {
+    "width_mm": 203.2,
+    "height_mm": 162.4,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom GD-0912-U": {
+    "width_mm": 304.8,
+    "height_mm": 240.6,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom GD-1212-U": {
+    "width_mm": 304.8,
+    "height_mm": 316.8,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom GD-1218-U": {
+    "width_mm": 457.2,
+    "height_mm": 316.8,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom MTE-450": {
+    "width_mm": 147.6,
+    "height_mm": 92.25,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom Movink 13 (DTH-135)": {
+    "width_mm": 297.76,
+    "height_mm": 169.24,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom PTH-450": {
+    "width_mm": 157.48,
+    "height_mm": 98.425,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom PTH-451": {
+    "width_mm": 157.48,
+    "height_mm": 98.425,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom PTH-460": {
+    "width_mm": 159.6,
+    "height_mm": 99.75,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom PTH-650": {
+    "width_mm": 223.52,
+    "height_mm": 139.7,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom PTH-651": {
+    "width_mm": 223.52,
+    "height_mm": 139.7,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom PTH-660": {
+    "width_mm": 224.0,
+    "height_mm": 148.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom PTH-850": {
+    "width_mm": 325.12,
+    "height_mm": 203.2,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom PTH-851": {
+    "width_mm": 325.12,
+    "height_mm": 203.2,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom PTH-860": {
+    "width_mm": 311.0,
+    "height_mm": 216.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom PTK-1240": {
+    "width_mm": 487.68,
+    "height_mm": 304.8,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom PTK-440": {
+    "width_mm": 157.48,
+    "height_mm": 98.425,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom PTK-450": {
+    "width_mm": 157.48,
+    "height_mm": 98.425,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom PTK-470": {
+    "width_mm": 187.0,
+    "height_mm": 105.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom PTK-540WL": {
+    "width_mm": 203.2,
+    "height_mm": 127.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom PTK-640": {
+    "width_mm": 223.52,
+    "height_mm": 139.7,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom PTK-650": {
+    "width_mm": 223.52,
+    "height_mm": 139.7,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom PTK-670": {
+    "width_mm": 263.0,
+    "height_mm": 148.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom PTK-840": {
+    "width_mm": 325.12,
+    "height_mm": 203.2,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom PTK-870": {
+    "width_mm": 349.0,
+    "height_mm": 195.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom PTU-600U": {
+    "width_mm": 204.8,
+    "height_mm": 153.6,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom PTZ-1230": {
+    "width_mm": 304.8,
+    "height_mm": 304.8,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom PTZ-1231W": {
+    "width_mm": 487.68,
+    "height_mm": 304.8,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom PTZ-430": {
+    "width_mm": 127.0,
+    "height_mm": 101.6,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom PTZ-431W": {
+    "width_mm": 157.48,
+    "height_mm": 98.425,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom PTZ-630": {
+    "width_mm": 203.2,
+    "height_mm": 152.4,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom PTZ-631W": {
+    "width_mm": 271.02,
+    "height_mm": 158.75,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom PTZ-930": {
+    "width_mm": 304.8,
+    "height_mm": 228.6,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom XD-0405-U": {
+    "width_mm": 127.0,
+    "height_mm": 106.0,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom XD-0608-U": {
+    "width_mm": 203.2,
+    "height_mm": 162.4,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom XD-0912-U": {
+    "width_mm": 304.8,
+    "height_mm": 240.6,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom XD-1212-U": {
+    "width_mm": 304.8,
+    "height_mm": 316.8,
+    "source": "opentabletdriver-config"
+  },
+  "Wacom XD-1218-U": {
+    "width_mm": 457.2,
+    "height_mm": 316.8,
+    "source": "opentabletdriver-config"
+  },
+  "Waltop Slim Tablet 5.8\"": {
+    "width_mm": 127.0,
+    "height_mm": 76.2,
+    "source": "opentabletdriver-config"
+  },
+  "XENX P1-640": {
+    "width_mm": 168.0,
+    "height_mm": 105.0,
+    "source": "opentabletdriver-config"
+  },
+  "XENX P3-1060": {
+    "width_mm": 254.0,
+    "height_mm": 158.75,
+    "source": "opentabletdriver-config"
+  },
+  "XENX X1-640": {
+    "width_mm": 152.0,
+    "height_mm": 95.0,
+    "source": "opentabletdriver-config"
+  },
+  "XOPPOX D161": {
+    "width_mm": 344.2,
+    "height_mm": 193.6,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Artist 10 (2nd Gen)": {
+    "width_mm": 224.51,
+    "height_mm": 126.695,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Artist 10S": {
+    "width_mm": 216.96,
+    "height_mm": 135.6,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Artist 12": {
+    "width_mm": 256.32,
+    "height_mm": 144.18,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Artist 12 (2nd Gen)": {
+    "width_mm": 263.19,
+    "height_mm": 148.08,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Artist 12 Pro": {
+    "width_mm": 256.34,
+    "height_mm": 144.15,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Artist 13 (2nd Gen)": {
+    "width_mm": 293.8,
+    "height_mm": 165.2,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Artist 13.3": {
+    "width_mm": 293.76,
+    "height_mm": 165.24,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Artist 13.3 Pro": {
+    "width_mm": 293.62,
+    "height_mm": 165.1,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Artist 13.3 Pro V2": {
+    "width_mm": 293.8,
+    "height_mm": 165.225,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Artist 15.6": {
+    "width_mm": 344.19,
+    "height_mm": 194.61,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Artist 15.6 Pro": {
+    "width_mm": 344.16,
+    "height_mm": 193.59,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Artist 15.6 Pro V2": {
+    "width_mm": 340.995,
+    "height_mm": 191.995,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Artist 16": {
+    "width_mm": 344.16,
+    "height_mm": 193.59,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Artist 16 (2nd Gen)": {
+    "width_mm": 340.99,
+    "height_mm": 191.81,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Artist 16 Pro": {
+    "width_mm": 341.07,
+    "height_mm": 191.795,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Artist 22 (2nd Gen)": {
+    "width_mm": 476.64,
+    "height_mm": 267.78,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Artist 22HD": {
+    "width_mm": 477.0125,
+    "height_mm": 268.225,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Artist 22R Pro": {
+    "width_mm": 476.64,
+    "height_mm": 267.78,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Artist 24": {
+    "width_mm": 526.85,
+    "height_mm": 296.35,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Artist 24 Pro": {
+    "width_mm": 526.85,
+    "height_mm": 296.35,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Artist Pro 14 (Gen2)": {
+    "width_mm": 301.6,
+    "height_mm": 188.49,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Artist Pro 16 (Gen2)": {
+    "width_mm": 344.6,
+    "height_mm": 215.39,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Artist Pro 16TP": {
+    "width_mm": 345.615,
+    "height_mm": 194.385,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Artist Pro 19 (Gen2)": {
+    "width_mm": 408.965,
+    "height_mm": 230.045,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Artist Pro 22 (Gen2)": {
+    "width_mm": 476.065,
+    "height_mm": 267.785,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Artist Pro 24 (Gen2)": {
+    "width_mm": 526.08,
+    "height_mm": 295.91,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Deco 01": {
+    "width_mm": 254.0,
+    "height_mm": 158.75,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Deco 01 V2": {
+    "width_mm": 254.0,
+    "height_mm": 158.75,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Deco 01 V2 (Variant 2)": {
+    "width_mm": 254.0,
+    "height_mm": 158.75,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Deco 01 V3": {
+    "width_mm": 254.0,
+    "height_mm": 158.75,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Deco 01 V3 (Variant 2)": {
+    "width_mm": 255.98,
+    "height_mm": 159.13,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Deco 02": {
+    "width_mm": 254.0,
+    "height_mm": 142.875,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Deco 03": {
+    "width_mm": 254.0,
+    "height_mm": 142.875,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Deco 640 (IT640)": {
+    "width_mm": 159.99,
+    "height_mm": 89.99,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Deco Fun L (CT1060)": {
+    "width_mm": 254.505,
+    "height_mm": 159.305,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Deco Fun S (CT640)": {
+    "width_mm": 160.0,
+    "height_mm": 101.6,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Deco Fun XS (CT430)": {
+    "width_mm": 121.92,
+    "height_mm": 76.2,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Deco L": {
+    "width_mm": 254.0,
+    "height_mm": 152.4,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Deco LW": {
+    "width_mm": 254.0,
+    "height_mm": 152.4,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Deco LW (Variant 2)": {
+    "width_mm": 254.0,
+    "height_mm": 152.4,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Deco M": {
+    "width_mm": 203.2,
+    "height_mm": 127.0,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Deco MW": {
+    "width_mm": 203.2,
+    "height_mm": 127.0,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Deco Pro LW Gen2": {
+    "width_mm": 278.99,
+    "height_mm": 173.99,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Deco Pro MW": {
+    "width_mm": 278.99,
+    "height_mm": 156.995,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Deco Pro MW Gen2": {
+    "width_mm": 229.005,
+    "height_mm": 143.0,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Deco Pro Medium": {
+    "width_mm": 278.99,
+    "height_mm": 156.995,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Deco Pro SW": {
+    "width_mm": 230.12,
+    "height_mm": 129.54,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Deco Pro Small": {
+    "width_mm": 230.12,
+    "height_mm": 129.54,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Deco Pro XLW Gen2": {
+    "width_mm": 381.0,
+    "height_mm": 229.005,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Deco mini4": {
+    "width_mm": 101.6,
+    "height_mm": 76.2,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Deco mini7": {
+    "width_mm": 177.8,
+    "height_mm": 111.095,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Deco mini7 V2": {
+    "width_mm": 177.975,
+    "height_mm": 111.095,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Deco mini7W V2": {
+    "width_mm": 177.975,
+    "height_mm": 111.095,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Innovator 16": {
+    "width_mm": 343.915,
+    "height_mm": 193.545,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Star 02": {
+    "width_mm": 203.2,
+    "height_mm": 127.0,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Star 03": {
+    "width_mm": 254.0,
+    "height_mm": 152.4,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Star 03 Pro": {
+    "width_mm": 254.0,
+    "height_mm": 152.4,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Star 03 V2": {
+    "width_mm": 254.0,
+    "height_mm": 152.4,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Star 05 V3": {
+    "width_mm": 203.2,
+    "height_mm": 127.0,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Star 06": {
+    "width_mm": 254.0,
+    "height_mm": 152.4,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Star 06C": {
+    "width_mm": 254.0,
+    "height_mm": 152.4,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Star G430": {
+    "width_mm": 101.6,
+    "height_mm": 76.2,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Star G430S": {
+    "width_mm": 101.6,
+    "height_mm": 76.2,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Star G430S V2": {
+    "width_mm": 101.6,
+    "height_mm": 76.2,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Star G540": {
+    "width_mm": 228.6,
+    "height_mm": 146.05,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Star G540 Pro": {
+    "width_mm": 136.8,
+    "height_mm": 73.025,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Star G640": {
+    "width_mm": 160.0,
+    "height_mm": 100.0,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Star G640 (Variant 2)": {
+    "width_mm": 159.99,
+    "height_mm": 99.99,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Star G640S": {
+    "width_mm": 164.995,
+    "height_mm": 102.995,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Star G960": {
+    "width_mm": 223.52,
+    "height_mm": 139.7,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Star G960S": {
+    "width_mm": 228.6,
+    "height_mm": 152.4,
+    "source": "opentabletdriver-config"
+  },
+  "XP-Pen Star G960S Plus": {
+    "width_mm": 228.6,
+    "height_mm": 152.4,
+    "source": "opentabletdriver-config"
+  },
+  "XenceLabs Pen Tablet Medium": {
+    "width_mm": 261.62,
+    "height_mm": 148.0,
+    "source": "opentabletdriver-config"
+  },
+  "XenceLabs Pen Tablet Small": {
+    "width_mm": 178.0,
+    "height_mm": 101.0,
+    "source": "opentabletdriver-config"
+  }
+}

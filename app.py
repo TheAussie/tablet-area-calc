@@ -6,17 +6,47 @@ import subprocess
 import threading
 from datetime import datetime
 import re
+import sys
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
 
 
 APP_NAME = "OsuTabletAreaCalc"
 DISPLAY_PRECISION = 5
-KNOWN_TABLET_FULL_AREAS_MM = {
-    "ctl-470": (147.2, 92.0, "Wacom CTL-470 147.2x92mm"),
-    "ctl-472": (152.0, 95.0, "Wacom CTL-472 152x95mm"),
-    "ctl-672": (216.0, 135.0, "Wacom CTL-672 216x135mm"),
-}
+SLIDER_MAX_PERCENT = 20
+VIRTUAL_BOUNDARY_PADDING_SCALE = 0.2
+def _tablet_areas_path():
+    if getattr(sys, "frozen", False):
+        return Path(sys.executable).parent / "tablet_areas.json"
+    return Path(__file__).parent / "tablet_areas.json"
+
+
+def _fmt_dim(v):
+    s = f"{v:g}"
+    return s if "." in s else s + ".0"
+
+
+def load_tablet_areas():
+    path = _tablet_areas_path()
+    try:
+        with path.open("r", encoding="utf-8") as f:
+            raw = json.load(f)
+        result = {}
+        for display_name, entry in raw.items():
+            w = float(entry["width_mm"])
+            h = float(entry["height_mm"])
+            label = f"{display_name} {_fmt_dim(w)} x {_fmt_dim(h)}mm"
+            result[display_name.lower()] = (w, h, label)
+        return result
+    except FileNotFoundError:
+        print(f"[tablet_areas] {path} not found; using empty tablet map.", file=sys.stderr)
+        return {}
+    except (OSError, json.JSONDecodeError, KeyError, TypeError, ValueError) as exc:
+        print(f"[tablet_areas] Could not load {path}: {exc}", file=sys.stderr)
+        return {}
+
+
+KNOWN_TABLET_MAX_AREAS_MM = load_tablet_areas()
 
 
 def parse_float(value, field_name):
@@ -344,7 +374,9 @@ class TabletAreaCalculator(tk.Tk):
         self.keep_center = tk.BooleanVar(value=True)
         self.lock_aspect_ratio = tk.BooleanVar(value=True)
         self.percent_adjustment = tk.DoubleVar(value=0)
-        self.percent_text = tk.StringVar(value="+0%")
+        self.percent_text = tk.StringVar(value="+0.0%")
+        self.no_change_text = tk.StringVar(value="")
+        self.bounds_warning_text = tk.StringVar(value="")
         self.status_text = tk.StringVar(value="Ready.")
 
         self.load_saved_config_path()
@@ -375,6 +407,9 @@ class TabletAreaCalculator(tk.Tk):
         style.configure("TLabel", background=bg, foreground=text)
         style.configure("Muted.TLabel", background=bg, foreground=muted)
         style.configure("Status.TLabel", background=bg, foreground=accent)
+        style.configure("Badge.TLabel", background=bg, foreground="#9ee493", font=("Segoe UI", 9, "bold"))
+        style.configure("Warning.TLabel", background=bg, foreground="#ffb86b")
+        style.configure("Section.TLabel", background=bg, foreground=muted, font=("Segoe UI", 8, "bold"))
         style.configure(
             "TLabelframe",
             background=panel,
@@ -400,9 +435,22 @@ class TabletAreaCalculator(tk.Tk):
             bordercolor=border,
             padding=(9, 5),
         )
+        style.configure(
+            "Primary.TButton",
+            background="#2f6076",
+            foreground=text,
+            bordercolor="#67d0ff",
+            padding=(10, 5),
+        )
+        style.configure("Action.TButton", padding=(12, 5))
         style.map(
             "TButton",
             background=[("active", "#344154"), ("pressed", "#1f2631")],
+            foreground=[("disabled", "#6d7480")],
+        )
+        style.map(
+            "Primary.TButton",
+            background=[("active", "#36748f"), ("pressed", "#244b5d"), ("disabled", "#27303d")],
             foreground=[("disabled", "#6d7480")],
         )
         style.configure("TCheckbutton", background=panel, foreground=text)
@@ -434,7 +482,7 @@ class TabletAreaCalculator(tk.Tk):
         main = ttk.Frame(self, padding=14)
         main.grid(row=0, column=0, sticky="nsew")
 
-        otd_frame = ttk.LabelFrame(main, text="OpenTabletDriver", padding=10)
+        otd_frame = ttk.LabelFrame(main, text="OpenTabletDriver profile", padding=10)
         otd_frame.grid(row=0, column=0, sticky="ew")
         otd_frame.columnconfigure(2, weight=1)
 
@@ -458,6 +506,7 @@ class TabletAreaCalculator(tk.Tk):
             text="Apply to OTD",
             command=self.apply_to_otd,
             state="disabled",
+            style="Primary.TButton",
         )
         self.apply_button.grid(row=0, column=3, sticky="ew")
         ttk.Label(otd_frame, textvariable=self.loaded_path, style="Muted.TLabel").grid(
@@ -468,7 +517,14 @@ class TabletAreaCalculator(tk.Tk):
             pady=(8, 0),
         )
 
-        config_frame = self.add_collapsible_section(main, "OTD config path", 1)
+        ttk.Label(main, text="Advanced", style="Section.TLabel").grid(
+            row=1,
+            column=0,
+            sticky="w",
+            pady=(10, 0),
+        )
+
+        config_frame = self.add_collapsible_section(main, "OTD config path", 2)
         config_frame.columnconfigure(1, weight=1)
         ttk.Label(config_frame, text="Path").grid(row=0, column=0, sticky="w", padx=(0, 8))
         ttk.Entry(config_frame, textvariable=self.otd_path, width=46).grid(
@@ -492,7 +548,7 @@ class TabletAreaCalculator(tk.Tk):
             command=self.open_otd_config_folder,
         ).grid(row=1, column=1, columnspan=3, sticky="e", pady=(8, 0))
 
-        backup_frame = self.add_collapsible_section(main, "Backups & restore", 2)
+        backup_frame = self.add_collapsible_section(main, "Backups & restore", 3)
         backup_frame.columnconfigure(1, weight=1)
         ttk.Label(backup_frame, text="Backup").grid(row=0, column=0, sticky="w", padx=(0, 8))
         self.backup_combo = ttk.Combobox(
@@ -522,7 +578,7 @@ class TabletAreaCalculator(tk.Tk):
             wraplength=620,
         ).grid(row=1, column=0, columnspan=4, sticky="w", pady=(8, 0))
 
-        console_frame = self.add_collapsible_section(main, "Live apply & debug", 3)
+        console_frame = self.add_collapsible_section(main, "Live apply & debug", 4)
         console_frame.columnconfigure(1, weight=1)
         ttk.Checkbutton(
             console_frame,
@@ -556,7 +612,7 @@ class TabletAreaCalculator(tk.Tk):
         )
 
         input_frame = ttk.LabelFrame(main, text="Current Area", padding=10)
-        input_frame.grid(row=4, column=0, sticky="ew", pady=(10, 0))
+        input_frame.grid(row=5, column=0, sticky="ew", pady=(10, 0))
         input_frame.columnconfigure(1, weight=1)
         input_frame.columnconfigure(3, weight=1)
         self.add_entry(input_frame, "Current width", "old_width", 0, 0)
@@ -565,7 +621,7 @@ class TabletAreaCalculator(tk.Tk):
         self.add_entry(input_frame, "Current center Y", "old_offset_y", 1, 2)
 
         target_frame = ttk.LabelFrame(main, text="Target Area", padding=10)
-        target_frame.grid(row=5, column=0, sticky="ew", pady=(10, 0))
+        target_frame.grid(row=6, column=0, sticky="ew", pady=(10, 0))
         target_frame.columnconfigure(1, weight=1)
         target_frame.columnconfigure(3, weight=1)
         self.add_entry(target_frame, "Target width", "target_width", 0, 0)
@@ -600,44 +656,69 @@ class TabletAreaCalculator(tk.Tk):
         ).grid(row=3, column=0, columnspan=2, sticky="w", pady=(10, 0))
 
         actions = ttk.Frame(main)
-        actions.grid(row=6, column=0, sticky="ew", pady=(10, 0))
-        ttk.Button(actions, text="Calculate", command=self.calculate).grid(row=0, column=0)
-        ttk.Button(actions, text="Clear", command=self.clear).grid(row=0, column=1, padx=(8, 0))
-        ttk.Button(actions, text="Load example", command=self.load_example).grid(row=0, column=2, padx=(8, 0))
+        actions.grid(row=7, column=0, sticky="ew", pady=(10, 0))
+        ttk.Button(actions, text="Calculate", command=self.calculate, style="Action.TButton").grid(
+            row=0,
+            column=0,
+            sticky="w",
+        )
+        ttk.Button(actions, text="Clear", command=self.clear, style="Action.TButton").grid(
+            row=0,
+            column=1,
+            sticky="w",
+            padx=(8, 0),
+        )
+        ttk.Button(actions, text="Load example", command=self.load_example, style="Action.TButton").grid(
+            row=0,
+            column=2,
+            sticky="w",
+            padx=(8, 0),
+        )
 
         result_frame = ttk.LabelFrame(main, text="Output", padding=10)
-        result_frame.grid(row=7, column=0, sticky="ew")
+        result_frame.grid(row=8, column=0, sticky="ew")
         result_frame.columnconfigure(1, weight=1)
         result_frame.columnconfigure(3, weight=1)
         self.add_result(result_frame, "New width", "new_width", 0, 0)
         self.add_result(result_frame, "New height", "new_height", 0, 2)
         self.add_result(result_frame, "New center X", "new_offset_x", 1, 0)
         self.add_result(result_frame, "New center Y", "new_offset_y", 1, 2)
-        self.add_result(result_frame, "Percentage change", "area_change", 2, 0)
-        ttk.Button(result_frame, text="Copy result", command=self.copy_all_results).grid(
+        self.add_result(result_frame, "Area change", "area_change", 2, 0)
+        ttk.Label(result_frame, textvariable=self.no_change_text, style="Badge.TLabel").grid(
             row=2,
             column=2,
-            columnspan=2,
+            sticky="w",
+            padx=(12, 0),
+            pady=3,
+        )
+        ttk.Button(result_frame, text="Copy result", command=self.copy_all_results).grid(
+            row=2,
+            column=3,
             sticky="ew",
             padx=(12, 0),
             pady=3,
         )
 
         visualizer_frame = ttk.LabelFrame(main, text="Area Preview", padding=10)
-        visualizer_frame.grid(row=8, column=0, sticky="ew", pady=(10, 0))
+        visualizer_frame.grid(row=9, column=0, sticky="ew", pady=(10, 0))
         visualizer_frame.columnconfigure(0, weight=1)
         self.visualizer_canvas = tk.Canvas(
             visualizer_frame,
             width=620,
-            height=180,
+            height=200,
             bg="#101216",
             highlightthickness=1,
             highlightbackground="#303744",
         )
         self.visualizer_canvas.grid(row=0, column=0, sticky="ew")
+        ttk.Label(
+            visualizer_frame,
+            textvariable=self.bounds_warning_text,
+            style="Warning.TLabel",
+        ).grid(row=1, column=0, sticky="w", pady=(6, 0))
 
         ttk.Label(main, textvariable=self.status_text, style="Status.TLabel").grid(
-            row=9,
+            row=10,
             column=0,
             sticky="w",
             pady=(8, 0),
@@ -898,7 +979,7 @@ class TabletAreaCalculator(tk.Tk):
         self.add_result(result_frame, "New height", "new_height", 0, 3)
         self.add_result(result_frame, "New center X", "new_offset_x", 1, 0)
         self.add_result(result_frame, "New center Y", "new_offset_y", 1, 3)
-        self.add_result(result_frame, "Percentage change", "area_change", 2, 0)
+        self.add_result(result_frame, "Area change", "area_change", 2, 0)
         ttk.Button(result_frame, text="Copy result", command=self.copy_all_results).grid(
             row=2,
             column=3,
@@ -961,8 +1042,8 @@ class TabletAreaCalculator(tk.Tk):
             return
 
         try:
-            if key == "old_width" and self.percent_adjustment.get() != 0:
-                self.update_target_width_from_slider()
+            if key in ("old_width", "old_height") and self.percent_adjustment.get() != 0:
+                self.update_target_area_from_slider()
             elif key == "target_width" and self.lock_aspect_ratio.get():
                 self.update_target_height_from_width()
             elif key == "target_height" and self.lock_aspect_ratio.get():
@@ -977,7 +1058,10 @@ class TabletAreaCalculator(tk.Tk):
     def on_lock_changed(self):
         if self.lock_aspect_ratio.get():
             try:
-                self.update_target_height_from_width()
+                if self.percent_adjustment.get() != 0:
+                    self.update_target_area_from_slider()
+                else:
+                    self.update_target_height_from_width()
             except ValueError as exc:
                 self.status_text.set(str(exc))
         self.calculate()
@@ -997,26 +1081,28 @@ class TabletAreaCalculator(tk.Tk):
         self.set_entry("target_width", format_number(height * ratio))
 
     def on_slider_change(self, _value):
-        percent = round(self.percent_adjustment.get() * 2) / 2
+        percent = round(self.percent_adjustment.get() * 10) / 10
         self.percent_adjustment.set(percent)
-        self.percent_text.set(f"{percent:+g}%")
+        self.percent_text.set(f"{percent:+.1f}%")
 
         try:
-            self.update_target_width_from_slider()
+            self.update_target_area_from_slider()
             self.calculate()
         except ValueError as exc:
             self.status_text.set(str(exc))
 
-    def update_target_width_from_slider(self):
+    def update_target_area_from_slider(self):
         percent = self.percent_adjustment.get()
         old_width = parse_float(self.inputs["old_width"].get(), "Current width")
-        if old_width <= 0:
-            raise ValueError("Current width must be greater than zero.")
+        old_height = parse_float(self.inputs["old_height"].get(), "Current height")
+        if old_width <= 0 or old_height <= 0:
+            raise ValueError("Current width and height must be greater than zero.")
 
-        new_width = old_width * (1 + percent / 100)
+        scale = 1 + percent / 100
+        new_width = old_width * scale
+        new_height = old_height * scale
         self.set_entry("target_width", format_number(new_width))
-        if self.lock_aspect_ratio.get():
-            self.update_target_height_from_width()
+        self.set_entry("target_height", format_number(new_height))
 
     def calculate(self):
         try:
@@ -1038,6 +1124,12 @@ class TabletAreaCalculator(tk.Tk):
             else:
                 new_offset_x = old_offset_x
                 new_offset_y = old_offset_y
+            new_offset_x, new_offset_y, center_was_clamped = self.clamp_center_for_selected_tablet(
+                new_offset_x,
+                new_offset_y,
+                target_width,
+                target_height,
+            )
 
             old_area = old_width * old_height
             new_area = target_width * target_height
@@ -1048,13 +1140,52 @@ class TabletAreaCalculator(tk.Tk):
             self.results["new_offset_x"].set(format_number(new_offset_x))
             self.results["new_offset_y"].set(format_number(new_offset_y))
             self.results["area_change"].set(f"{format_number(area_change)}%")
+            self.no_change_text.set("No change" if abs(area_change) < 0.000005 else "")
             self.calculation_valid = True
-            self.status_text.set("Calculated.")
+            if center_was_clamped:
+                self.status_text.set("Center adjusted to fit tablet bounds.")
+            else:
+                self.status_text.set("Calculated.")
         except ValueError as exc:
             self.calculation_valid = False
+            self.no_change_text.set("")
             self.status_text.set(str(exc))
         self.redraw_visualizer()
         self.update_apply_button_state()
+
+    def clamp_center_for_selected_tablet(self, center_x, center_y, width, height):
+        tablet_area = self.get_selected_tablet_full_area_mm()
+        if not tablet_area or tablet_area.get("source") not in ("detected_from_otd", "known_model"):
+            return center_x, center_y, False
+
+        return self.clamp_center_to_tablet_bounds(
+            center_x,
+            center_y,
+            width,
+            height,
+            tablet_area["width"],
+            tablet_area["height"],
+        )
+
+    @staticmethod
+    def clamp_center_to_tablet_bounds(center_x, center_y, width, height, tablet_width, tablet_height):
+        min_center_x = width / 2
+        max_center_x = tablet_width - (width / 2)
+        min_center_y = height / 2
+        max_center_y = tablet_height - (height / 2)
+
+        if min_center_x > max_center_x:
+            clamped_x = tablet_width / 2
+        else:
+            clamped_x = min(max(center_x, min_center_x), max_center_x)
+
+        if min_center_y > max_center_y:
+            clamped_y = tablet_height / 2
+        else:
+            clamped_y = min(max(center_y, min_center_y), max_center_y)
+
+        was_clamped = abs(clamped_x - center_x) > 0.0000001 or abs(clamped_y - center_y) > 0.0000001
+        return clamped_x, clamped_y, was_clamped
 
     def get_visualizer_rects(self):
         old_width = parse_float_or_none(self.inputs["old_width"].get())
@@ -1101,23 +1232,74 @@ class TabletAreaCalculator(tk.Tk):
             "boundary_label": self.get_visualizer_boundary_label(),
         }
 
+    def get_out_of_bounds_areas(self, rects, tolerance=0.0001):
+        tablet_area = self.get_selected_tablet_full_area_mm()
+        if not tablet_area or tablet_area.get("source") not in ("detected_from_otd", "known_model"):
+            return []
+
+        boundary = rects["boundary"]
+        out_of_bounds = []
+        for label, rect in (("Current area", rects["current"]), ("New area", rects["new"])):
+            if (
+                rect[0] < boundary[0] - tolerance
+                or rect[1] < boundary[1] - tolerance
+                or rect[2] > boundary[2] + tolerance
+                or rect[3] > boundary[3] + tolerance
+            ):
+                out_of_bounds.append(label)
+        return out_of_bounds
+
+    def format_bounds_warning(self, out_of_bounds):
+        if not out_of_bounds:
+            return ""
+        if len(out_of_bounds) == 1:
+            return f"Warning: {out_of_bounds[0].lower()} extends beyond the tablet boundary."
+        return "Warning: current and new areas extend beyond the tablet boundary."
+
     def get_visualizer_boundary(self, current_rect, new_rect):
         tablet_area = self.get_selected_tablet_full_area_mm()
         if tablet_area:
             return (0, 0, tablet_area["width"], tablet_area["height"])
 
-        max_x = max(1, current_rect[2], new_rect[2])
-        max_y = max(1, current_rect[3], new_rect[3])
-        min_x = min(0, current_rect[0], new_rect[0])
-        min_y = min(0, current_rect[1], new_rect[1])
+        return self.get_virtual_visualizer_boundary(current_rect)
 
-        return (min_x, min_y, max_x, max_y)
+    def get_virtual_visualizer_boundary(self, current_rect):
+        left, top, right, bottom = current_rect
+        width = right - left
+        height = bottom - top
+        center_x = (left + right) / 2
+        center_y = (top + bottom) / 2
+        max_scale = 1 + (SLIDER_MAX_PERCENT / 100)
+        viewport_width = width * max_scale * (1 + VIRTUAL_BOUNDARY_PADDING_SCALE * 2)
+        viewport_height = height * max_scale * (1 + VIRTUAL_BOUNDARY_PADDING_SCALE * 2)
+
+        return (
+            center_x - (viewport_width / 2),
+            center_y - (viewport_height / 2),
+            center_x + (viewport_width / 2),
+            center_y + (viewport_height / 2),
+        )
 
     def get_visualizer_boundary_label(self):
         tablet_area = self.get_selected_tablet_full_area_mm()
         if tablet_area:
             return f"tablet boundary: {tablet_area['label']}"
         return "virtual boundary"
+
+    def get_visualizer_viewport(self, rects):
+        boundary = rects["boundary"]
+        min_x = min(boundary[0], rects["current"][0], rects["new"][0])
+        min_y = min(boundary[1], rects["current"][1], rects["new"][1])
+        max_x = max(boundary[2], rects["current"][2], rects["new"][2])
+        max_y = max(boundary[3], rects["current"][3], rects["new"][3])
+
+        width = max_x - min_x
+        height = max_y - min_y
+        if width <= 0 or height <= 0:
+            return boundary
+
+        margin = max(width, height) * 0.04
+        return (min_x - margin, min_y - margin, max_x + margin, max_y + margin)
 
     def get_selected_tablet_full_area_mm(self):
         profile = self.selected_profile()
@@ -1134,15 +1316,17 @@ class TabletAreaCalculator(tk.Tk):
                 return {
                     "width": width,
                     "height": height,
+                    "source": "detected_from_otd",
                     "label": f"detected {format_number(width).rstrip('0').rstrip('.')}x{format_number(height).rstrip('0').rstrip('.')}mm",
                 }
 
         model_name = profile.get("name", "").lower()
-        for model_key, (width, height, label) in KNOWN_TABLET_FULL_AREAS_MM.items():
+        for model_key, (width, height, label) in KNOWN_TABLET_MAX_AREAS_MM.items():
             if model_key in model_name:
                 return {
                     "width": width,
                     "height": height,
+                    "source": "known_model",
                     "label": label,
                 }
 
@@ -1160,6 +1344,7 @@ class TabletAreaCalculator(tk.Tk):
         boundary_color = "#b8b8b8"
         current_color = "#1d93d1"
         new_color = "#f7c948"
+        warning_color = "#d97706"
         area_fill = "#78b8e6"
         label_color = "#111827"
         center_color = "#111827"
@@ -1169,6 +1354,7 @@ class TabletAreaCalculator(tk.Tk):
 
         rects = self.get_visualizer_rects()
         if rects is None:
+            self.bounds_warning_text.set("")
             canvas.create_text(
                 canvas_width / 2,
                 canvas_height / 2,
@@ -1181,25 +1367,42 @@ class TabletAreaCalculator(tk.Tk):
         drawing_top = 30
         padding = 14
         boundary = rects["boundary"]
-        scale_data = self.get_visualizer_scale(boundary, canvas_width, canvas_height, padding, drawing_top)
+        viewport = self.get_visualizer_viewport(rects)
+        scale_data = self.get_visualizer_scale(viewport, canvas_width, canvas_height, padding, drawing_top)
         if scale_data is None:
             return
 
         boundary_canvas = self.map_rect_to_canvas(boundary, scale_data)
         current_canvas = self.map_rect_to_canvas(rects["current"], scale_data)
         new_canvas = self.map_rect_to_canvas(rects["new"], scale_data)
+        out_of_bounds = self.get_out_of_bounds_areas(rects)
+        self.bounds_warning_text.set(self.format_bounds_warning(out_of_bounds))
 
         self.draw_origin_marker(canvas, scale_data, boundary_color)
-        canvas.create_rectangle(*current_canvas, outline=current_color, fill=area_fill, width=2)
-        if self.rects_are_visually_same(current_canvas, new_canvas):
-            canvas.create_rectangle(*self.inset_canvas_rect(current_canvas, 4), outline=new_color, width=2)
-        else:
-            canvas.create_rectangle(*new_canvas, outline=new_color, width=2)
         canvas.create_rectangle(*boundary_canvas, outline=boundary_color, width=2, dash=(4, 3))
+        current_outline = warning_color if "Current area" in out_of_bounds else current_color
+        new_outline = warning_color if "New area" in out_of_bounds else new_color
+        current_options = {"outline": current_outline, "fill": area_fill, "width": 2}
+        new_options = {"outline": new_outline, "width": 2}
+        if "Current area" in out_of_bounds:
+            current_options["dash"] = (6, 3)
+        if "New area" in out_of_bounds:
+            new_options["dash"] = (6, 3)
+        canvas.create_rectangle(*current_canvas, **current_options)
+        canvas.create_rectangle(*new_canvas, **new_options)
         self.draw_center_marker(canvas, rects["current"], scale_data, current_color, center_color)
         self.draw_center_marker(canvas, rects["new"], scale_data, new_color, center_color)
         self.draw_area_labels(canvas, rects["new"], scale_data, label_color)
         self.draw_boundary_label(canvas, rects["boundary_label"], canvas_width, drawing_top, padding, label_color)
+        if out_of_bounds:
+            canvas.create_text(
+                padding,
+                canvas_height - padding,
+                text="out of bounds",
+                fill=warning_color,
+                anchor="sw",
+                font=("Segoe UI", 8, "bold"),
+            )
 
         if self.keep_center.get():
             center_status = "Center preserved \u2713" if self.area_centers_overlap(rects) else "Centers differ"
@@ -1230,9 +1433,6 @@ class TabletAreaCalculator(tk.Tk):
             canvas.create_text(x + 24, y, text=label, fill="#111827", anchor="w", font=("Segoe UI", 8))
             x += 130
 
-    def rects_are_visually_same(self, first_rect, second_rect):
-        return all(abs(first - second) < 0.5 for first, second in zip(first_rect, second_rect))
-
     def area_centers_overlap(self, rects, tolerance=0.0001):
         current_x1, current_y1, current_x2, current_y2 = rects["current"]
         new_x1, new_y1, new_x2, new_y2 = rects["new"]
@@ -1242,12 +1442,6 @@ class TabletAreaCalculator(tk.Tk):
             abs(current_center[0] - new_center[0]) <= tolerance
             and abs(current_center[1] - new_center[1]) <= tolerance
         )
-
-    def inset_canvas_rect(self, rect, amount):
-        x1, y1, x2, y2 = rect
-        if (x2 - x1) <= amount * 2 or (y2 - y1) <= amount * 2:
-            return rect
-        return (x1 + amount, y1 + amount, x2 - amount, y2 - amount)
 
     def get_visualizer_scale(self, boundary, canvas_width, canvas_height, padding, drawing_top):
         min_x, min_y, max_x, max_y = boundary
@@ -1728,7 +1922,7 @@ class TabletAreaCalculator(tk.Tk):
         self.set_entry("old_offset_y", format_number(area["offset_y"]))
 
         if self.percent_adjustment.get() != 0:
-            self.update_target_width_from_slider()
+            self.update_target_area_from_slider()
         else:
             self.set_entry("target_width", format_number(area["width"]))
             self.set_entry("target_height", format_number(area["height"]))
@@ -2058,7 +2252,7 @@ class TabletAreaCalculator(tk.Tk):
             "New height": self.results["new_height"].get(),
             "New center X": self.results["new_offset_x"].get(),
             "New center Y": self.results["new_offset_y"].get(),
-            "Percentage change": self.results["area_change"].get(),
+            "Area change": self.results["area_change"].get(),
         }
         if not all(values.values()):
             self.status_text.set("Calculate first, then copy the result.")
@@ -2076,10 +2270,12 @@ class TabletAreaCalculator(tk.Tk):
                 entry.insert(0, "1.3333")
         for result in self.results.values():
             result.set("")
+        self.no_change_text.set("")
+        self.bounds_warning_text.set("")
         self.keep_center.set(True)
         self.lock_aspect_ratio.set(True)
         self.percent_adjustment.set(0)
-        self.percent_text.set("+0%")
+        self.percent_text.set("+0.0%")
         self.profile_var.set("")
         self.status_text.set("Ready.")
         self.redraw_visualizer()
@@ -2098,7 +2294,7 @@ class TabletAreaCalculator(tk.Tk):
         self.keep_center.set(True)
         self.lock_aspect_ratio.set(True)
         self.percent_adjustment.set(5)
-        self.percent_text.set("+5%")
+        self.percent_text.set("+5.0%")
         self.update_target_height_from_width()
         self.calculate()
 
