@@ -370,6 +370,7 @@ class TabletAreaCalculator(tk.Tk):
         self.backup_paths = {}
         self.apply_live = tk.BooleanVar(value=False)
         self.debug_live_apply = tk.BooleanVar(value=False)
+        self.create_backup = tk.BooleanVar(value=True)
         self.live_apply_running = False
         self.keep_center = tk.BooleanVar(value=True)
         self.lock_aspect_ratio = tk.BooleanVar(value=True)
@@ -509,8 +510,13 @@ class TabletAreaCalculator(tk.Tk):
             style="Primary.TButton",
         )
         self.apply_button.grid(row=0, column=3, sticky="ew")
+        ttk.Checkbutton(
+            otd_frame,
+            text="Create backup before writing settings",
+            variable=self.create_backup,
+        ).grid(row=1, column=3, sticky="e", pady=(4, 0))
         ttk.Label(otd_frame, textvariable=self.loaded_path, style="Muted.TLabel").grid(
-            row=1,
+            row=2,
             column=0,
             columnspan=4,
             sticky="w",
@@ -620,8 +626,31 @@ class TabletAreaCalculator(tk.Tk):
         self.add_entry(input_frame, "Current center X", "old_offset_x", 1, 0)
         self.add_entry(input_frame, "Current center Y", "old_offset_y", 1, 2)
 
+        presets_frame = ttk.LabelFrame(main, text="Offset Presets", padding=8)
+        presets_frame.grid(row=6, column=0, sticky="ew", pady=(6, 0))
+        ttk.Label(presets_frame, text="Move area to:", style="Muted.TLabel").grid(
+            row=0, column=0, sticky="w", padx=(0, 8)
+        )
+        for _col, (_label, _preset) in enumerate(
+            [
+                ("Left", "left"),
+                ("Center X", "center_x"),
+                ("Right", "right"),
+                ("Top", "top"),
+                ("Center Y", "center_y"),
+                ("Bottom", "bottom"),
+                ("Center", "center"),
+            ],
+            start=1,
+        ):
+            ttk.Button(
+                presets_frame,
+                text=_label,
+                command=lambda p=_preset: self.apply_offset_preset(p),
+            ).grid(row=0, column=_col, padx=(0, 4))
+
         target_frame = ttk.LabelFrame(main, text="Target Area", padding=10)
-        target_frame.grid(row=6, column=0, sticky="ew", pady=(10, 0))
+        target_frame.grid(row=7, column=0, sticky="ew", pady=(10, 0))
         target_frame.columnconfigure(1, weight=1)
         target_frame.columnconfigure(3, weight=1)
         self.add_entry(target_frame, "Target width", "target_width", 0, 0)
@@ -656,7 +685,7 @@ class TabletAreaCalculator(tk.Tk):
         ).grid(row=3, column=0, columnspan=2, sticky="w", pady=(10, 0))
 
         actions = ttk.Frame(main)
-        actions.grid(row=7, column=0, sticky="ew", pady=(10, 0))
+        actions.grid(row=8, column=0, sticky="ew", pady=(10, 0))
         ttk.Button(actions, text="Calculate", command=self.calculate, style="Action.TButton").grid(
             row=0,
             column=0,
@@ -676,7 +705,7 @@ class TabletAreaCalculator(tk.Tk):
         )
 
         result_frame = ttk.LabelFrame(main, text="Output", padding=10)
-        result_frame.grid(row=8, column=0, sticky="ew")
+        result_frame.grid(row=9, column=0, sticky="ew")
         result_frame.columnconfigure(1, weight=1)
         result_frame.columnconfigure(3, weight=1)
         self.add_result(result_frame, "New width", "new_width", 0, 0)
@@ -700,7 +729,7 @@ class TabletAreaCalculator(tk.Tk):
         )
 
         visualizer_frame = ttk.LabelFrame(main, text="Area Preview", padding=10)
-        visualizer_frame.grid(row=9, column=0, sticky="ew", pady=(10, 0))
+        visualizer_frame.grid(row=10, column=0, sticky="ew", pady=(10, 0))
         visualizer_frame.columnconfigure(0, weight=1)
         self.visualizer_canvas = tk.Canvas(
             visualizer_frame,
@@ -718,7 +747,7 @@ class TabletAreaCalculator(tk.Tk):
         ).grid(row=1, column=0, sticky="w", pady=(6, 0))
 
         ttk.Label(main, textvariable=self.status_text, style="Status.TLabel").grid(
-            row=10,
+            row=11,
             column=0,
             sticky="w",
             pady=(8, 0),
@@ -1152,6 +1181,86 @@ class TabletAreaCalculator(tk.Tk):
             self.status_text.set(str(exc))
         self.redraw_visualizer()
         self.update_apply_button_state()
+
+    def apply_offset_preset(self, preset):
+        try:
+            area_width = parse_float(self.inputs["old_width"].get(), "Current width")
+            area_height = parse_float(self.inputs["old_height"].get(), "Current height")
+        except ValueError as exc:
+            self.status_text.set(f"offset-preset: need valid area dimensions — {exc}")
+            return
+
+        tablet_area = self.get_selected_tablet_full_area_mm()
+        if not tablet_area:
+            self.status_text.set("offset-preset: no tablet dimensions known — load an OTD profile first.")
+            return
+
+        tablet_w = tablet_area["width"]
+        tablet_h = tablet_area["height"]
+        current_cx = parse_float_or_none(self.inputs["old_offset_x"].get())
+        current_cy = parse_float_or_none(self.inputs["old_offset_y"].get())
+        if current_cx is None:
+            current_cx = tablet_w / 2
+        if current_cy is None:
+            current_cy = tablet_h / 2
+
+        if preset == "left":
+            new_cx = area_width / 2
+            new_cy = current_cy
+        elif preset == "right":
+            new_cx = tablet_w - area_width / 2
+            new_cy = current_cy
+        elif preset == "top":
+            new_cx = current_cx
+            new_cy = area_height / 2
+        elif preset == "bottom":
+            new_cx = current_cx
+            new_cy = tablet_h - area_height / 2
+        elif preset == "center_x":
+            new_cx = tablet_w / 2
+            new_cy = current_cy
+        elif preset == "center_y":
+            new_cx = current_cx
+            new_cy = tablet_h / 2
+        elif preset == "center":
+            new_cx = tablet_w / 2
+            new_cy = tablet_h / 2
+        else:
+            return
+
+        min_cx = area_width / 2
+        max_cx = tablet_w - area_width / 2
+        min_cy = area_height / 2
+        max_cy = tablet_h - area_height / 2
+
+        clamped = False
+        if min_cx > max_cx:
+            new_cx = tablet_w / 2
+            clamped = True
+        else:
+            clamped_cx = min(max(new_cx, min_cx), max_cx)
+            if abs(clamped_cx - new_cx) > 1e-7:
+                clamped = True
+            new_cx = clamped_cx
+
+        if min_cy > max_cy:
+            new_cy = tablet_h / 2
+            clamped = True
+        else:
+            clamped_cy = min(max(new_cy, min_cy), max_cy)
+            if abs(clamped_cy - new_cy) > 1e-7:
+                clamped = True
+            new_cy = clamped_cy
+
+        self.set_entry("old_offset_x", format_number(new_cx))
+        self.set_entry("old_offset_y", format_number(new_cy))
+
+        if clamped:
+            print(f"offset-preset: {preset} clamped")
+            self.status_text.set(f"offset-preset: {preset} (clamped to tablet bounds)")
+        else:
+            print(f"offset-preset: {preset}")
+        self.calculate()
 
     def clamp_center_for_selected_tablet(self, center_x, center_y, width, height):
         tablet_area = self.get_selected_tablet_full_area_mm()
@@ -1941,9 +2050,11 @@ class TabletAreaCalculator(tk.Tk):
             self.update_apply_button_state()
             return
 
+        do_backup = self.create_backup.get()
+        backup_note = "A timestamped backup will be created first." if do_backup else "No backup will be created (disabled by you)."
         if not messagebox.askyesno(
             "Apply to OpenTabletDriver",
-            "This will modify your OTD settings.json. Backup will be created. Continue?",
+            f"This will modify your OTD settings.json.\n{backup_note}\nContinue?",
             parent=self,
         ):
             return
@@ -1955,11 +2066,14 @@ class TabletAreaCalculator(tk.Tk):
                 "offset_x": parse_float(self.results["new_offset_x"].get(), "New center X"),
                 "offset_y": parse_float(self.results["new_offset_y"].get(), "New center Y"),
             }
-            backup_path = self.write_selected_profile_to_otd(profile, new_values)
+            backup_path = self.write_selected_profile_to_otd(profile, new_values, create_backup=do_backup)
         except (OSError, ValueError) as exc:
             self.status_text.set(f"Could not save OTD settings: {exc}")
             messagebox.showerror("Save failed", f"Could not save OTD settings:\n\n{exc}", parent=self)
             return
+
+        if not do_backup:
+            print("Backup skipped by user setting.")
 
         profile["area"] = new_values
         self.loaded_path.set(f"Loaded: {self.loaded_config_path}")
@@ -1971,11 +2085,11 @@ class TabletAreaCalculator(tk.Tk):
             "Settings saved. Use OpenTabletDriver's reload/apply settings option "
             "if the change does not appear immediately."
         )
+        backup_detail = f"Backup created:\n{backup_path}" if backup_path else "Backup skipped by user setting."
         messagebox.showinfo(
             "Settings saved",
             "Settings saved. Use OpenTabletDriver's reload/apply settings option "
-            "if the change does not appear immediately.\n\n"
-            f"Backup created:\n{backup_path}",
+            f"if the change does not appear immediately.\n\n{backup_detail}",
             parent=self,
         )
 
@@ -1983,11 +2097,12 @@ class TabletAreaCalculator(tk.Tk):
         console_path = Path(self.console_path.get().strip())
         if not self.is_trusted_console_path(console_path):
             self.status_text.set("Console executable missing")
+            backup_detail = f"Backup created:\n{backup_path}" if backup_path else "Backup skipped by user setting."
             messagebox.showwarning(
                 "Console executable missing",
                 f"{action_label}, but live apply could not run because "
                 "OpenTabletDriver.Console.exe is missing or was not selected.\n\n"
-                f"Backup created:\n{backup_path}",
+                f"{backup_detail}",
                 parent=self,
             )
             return
@@ -2076,14 +2191,16 @@ class TabletAreaCalculator(tk.Tk):
         self.live_apply_running = False
         self.update_apply_button_state()
 
+        backup_detail = f"Safety backup:\n{backup_path}" if backup_path else "Backup skipped by user setting."
         if succeeded:
             message = "Settings reloaded through OTD Console."
             detail = output or "OTD Console reported success."
             self.refresh_loaded_settings_after_live_apply()
-            self.status_text.set(f"{message} Backup: {backup_path}")
+            status_backup = f"Backup: {backup_path}" if backup_path else "Backup skipped by user setting."
+            self.status_text.set(f"{message} {status_backup}")
             messagebox.showinfo(
                 "Settings reloaded",
-                f"{message}\n\nSafety backup:\n{backup_path}\n\n{detail}",
+                f"{message}\n\n{backup_detail}\n\n{detail}",
                 parent=self,
             )
         else:
@@ -2094,7 +2211,7 @@ class TabletAreaCalculator(tk.Tk):
             messagebox.showwarning(
                 message,
                 "Settings were saved, but live apply did not complete.\n\n"
-                f"Safety backup:\n{backup_path}\n\n"
+                f"{backup_detail}\n\n"
                 f"Details:\n{output}",
                 parent=self,
             )
@@ -2142,7 +2259,7 @@ class TabletAreaCalculator(tk.Tk):
             and resolved.name.lower() == "opentabletdriver.console.exe"
         )
 
-    def write_selected_profile_to_otd(self, profile, new_values):
+    def write_selected_profile_to_otd(self, profile, new_values, create_backup=True):
         config_path = self.loaded_config_path
         if self.otd_data is None:
             raise ValueError("No OTD settings are loaded.")
@@ -2167,10 +2284,12 @@ class TabletAreaCalculator(tk.Tk):
             raw_area[key] = value
 
         timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
-        backup_path = config_path.with_name(f"{config_path.name}.backup-{timestamp}")
-        temp_path = config_path.with_name(f"{config_path.name}.tmp-{timestamp}")
+        backup_path = None
+        if create_backup:
+            backup_path = config_path.with_name(f"{config_path.name}.backup-{timestamp}")
+            shutil.copy2(config_path, backup_path)
 
-        shutil.copy2(config_path, backup_path)
+        temp_path = config_path.with_name(f"{config_path.name}.tmp-{timestamp}")
         try:
             with temp_path.open("w", encoding="utf-8") as config_file:
                 json.dump(self.otd_data, config_file, indent=2)
