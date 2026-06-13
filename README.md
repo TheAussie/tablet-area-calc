@@ -2,6 +2,13 @@
 
 A small Windows-friendly Tkinter desktop app for osu! tablet area calculations.
 
+Download the latest Windows build from the [Releases](https://github.com/TheAussie/tablet-area-calc/releases) page.
+
+## Screenshots
+
+![Tablet Area Calc main window](docs/images/main-window.png)
+![Tablet Area Calc Expanded settings](docs/images/expanded-settings.png)
+
 ## Run on Windows
 
 1. Install Python from <https://www.python.org/downloads/windows/> if you do not already have it.
@@ -226,6 +233,8 @@ Total:      87 entries written to tablet_areas.json
 ### After running
 
 Restart the app. Tablet profiles whose OTD profile name contains a `tablet_areas.json` key (case-insensitive substring match) will use the fixed OTD boundary in the visualizer and apply OTD-style center clamping. Unknown tablets continue to use a virtual boundary.
+
+
 
 ## Included Example
 
